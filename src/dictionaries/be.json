@@ -116,7 +116,35 @@
       "createButtonLabel": "Стварыць",
       "noExpenses": "Няма выдаткоў",
       "loadingFailed": "Загрузка не ўдалася",
-      "totalExpenses": "Агульныя выдаткі"
+      "totalExpenses": "Агульныя выдаткі",
+      "trackedExpenses": "Улічаныя выдаткі",
+      "overviewTab": "Агляд",
+      "calendarTab": "Каляндар",
+      "calendar": {
+        "days": {
+          "sun": "Нд",
+          "mon": "Пн",
+          "tue": "Аў",
+          "wed": "Ср",
+          "thu": "Чц",
+          "fri": "Пт",
+          "sat": "Сб"
+        },
+        "total": "Усяго",
+        "weekTotal": "За тыдзень"
+      },
+      "expenses": {
+        "table": {
+          "type": "Тып",
+          "amount": "Сума",
+          "comment": "Каментар"
+        },
+        "dayDialog": {
+          "title": "Выдаткі за",
+          "addNewExpense": "Дадаць Новы Выдатак",
+          "submit": "Адправіць"
+        }
+      }
     }
   },
 

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getDictionary } from "@/dictionaries";
 import { Locale } from "@/locale";
 import { WithMounted } from "@/shared/components/WithMounted";
@@ -10,7 +10,10 @@ import { fetchCurrencyWhistoryExpenses } from "../../history/actions";
 import { fetchExpenses, fetchTypes } from "../actions";
 import ExpensesTable from "./ExpensesTable";
 import CreateExpenseButton from "./create-expense/CreateExpenseButton";
+import ExpensesCalendar from "./expenses-calendar/ExpensesCalendar";
 import ExpensesChart from "./expenses-chart/ExpensesChart";
+
+import { ExpensesContainerDictionary } from "./dictionary";
 
 interface Props {
   locale: Locale;
@@ -25,17 +28,29 @@ export default async function ExpensesContainer({
   fromTs,
   toTs,
 }: Props) {
-  const { data: expenses } = await fetchExpenses(currency, { fromTs, toTs });
+  const { data: expenses } = await fetchExpenses(currency, {
+    fromTs,
+    toTs,
+  });
   const { data: types } = await fetchTypes(currency);
   const { data: expensesSum } = await fetchCurrencyWhistoryExpenses(currency, {
     fromTs,
     toTs,
   });
 
-  const d = await getDictionary(locale, "currencyPage.expensesContainer");
+  const d = (await getDictionary(
+    locale,
+    "currencyPage.expensesContainer",
+  )) as ExpensesContainerDictionary;
 
-  if (!expenses || !types || !expensesSum) {
-    return <p>{d.loadingFailed}</p>;
+  if (!expenses?.length || !types?.length || !expensesSum) {
+    console.warn("Either expenses, or types, or expensesSum are empty", {
+      expenses,
+      types,
+      expensesSum,
+      fromTs,
+      toTs,
+    });
   }
 
   return (
@@ -46,19 +61,6 @@ export default async function ExpensesContainer({
           currency={currency}
           types={types}
         />
-      </div>
-
-      <div className="col-span-2 row-span-1">
-        <div className="w-fit">
-          <Card className="px-6 py-4">
-            <CardHeader className="p-0">
-              <CardTitle>{d.totalExpenses}</CardTitle>
-            </CardHeader>
-            <CardContent className="mt-2 p-0">
-              <p className="text-center">{Math.abs(expensesSum).toFixed(2)}</p>
-            </CardContent>
-          </Card>
-        </div>
       </div>
 
       <div className="col-span-1 row-span-1 overflow-auto">
@@ -73,16 +75,48 @@ export default async function ExpensesContainer({
           <p>{d.noExpenses}</p>
         )}
       </div>
-      <div className="col-span-1 row-span-1 flex flex-col items-center justify-start overflow-y-auto">
-        <WithMounted>
-          <ExpensesChart
-            width={PIE_CHART_WIDTH_DEFAULT}
-            height={PIE_CHART_HEIGHT_DEFAULT}
-            expenses={expenses}
-            expensesSum={expensesSum || 0}
-            currency={currency}
-          />
-        </WithMounted>
+      <div className="col-span-1 row-span-1 overflow-y-auto">
+        <Tabs
+          defaultValue="overview"
+          className="relative flex h-full w-full flex-col"
+        >
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="overview">{d.overviewTab}</TabsTrigger>
+            <TabsTrigger value="calendar">{d.calendarTab}</TabsTrigger>
+          </TabsList>
+          <TabsContent value="overview" className="flex flex-col gap-4 pt-4">
+            <div>
+              <WithMounted>
+                <ExpensesChart
+                  width={PIE_CHART_WIDTH_DEFAULT}
+                  height={PIE_CHART_HEIGHT_DEFAULT}
+                  expenses={expenses}
+                  expensesSum={expensesSum}
+                  currency={currency}
+                  totalExpenses={Math.abs(expensesSum).toFixed(2)}
+                  trackedExpenses={expenses
+                    .reduce(
+                      (sum, expense) => sum + Math.abs(expense.moneyAmount),
+                      0,
+                    )
+                    .toFixed(2)}
+                />
+              </WithMounted>
+            </div>
+          </TabsContent>
+          <TabsContent
+            value="calendar"
+            className="flex flex-grow flex-col items-center justify-center overflow-y-auto"
+          >
+            <WithMounted>
+              <ExpensesCalendar
+                expenses={expenses}
+                currency={currency}
+                types={types}
+              />
+            </WithMounted>
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   );

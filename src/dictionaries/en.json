@@ -117,7 +117,35 @@
       "createButtonLabel": "Create",
       "noExpenses": "No expenses",
       "loadingFailed": "Loading failed",
-      "totalExpenses": "Total Expenses"
+      "totalExpenses": "Total Expenses",
+      "trackedExpenses": "Tracked Expenses",
+      "overviewTab": "Overview",
+      "calendarTab": "Calendar",
+      "calendar": {
+        "days": {
+          "sun": "Sun",
+          "mon": "Mon",
+          "tue": "Tue",
+          "wed": "Wed",
+          "thu": "Thu",
+          "fri": "Fri",
+          "sat": "Sat"
+        },
+        "total": "Total",
+        "weekTotal": "Week Total"
+      },
+      "expenses": {
+        "table": {
+          "type": "Type",
+          "amount": "Amount",
+          "comment": "Comment"
+        },
+        "dayDialog": {
+          "title": "Expenses for",
+          "addNewExpense": "Add New Expense",
+          "submit": "Submit"
+        }
+      }
     }
   },
 
