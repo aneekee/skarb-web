@@ -30,6 +30,17 @@
     "title": "{{walletName}} History",
 
     "filters": {
+      "filtersButton": "Filters",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "pickADate": "Pick a date",
+      "from": "From:",
+      "to": "To:",
+      "types": "Types",
+      "selectTypes": "Select types",
+      "comment": "Comment",
+      "commentPlaceholder": "Search in comments...",
+      "applyFilters": "Apply Filters",
       "form": {
         "fromLabel": "From: ",
         "toLabel": "To: ",
@@ -45,6 +56,7 @@
       "actions": "Actions",
       "actionsMenu": {
         "label": "Actions",
+        "view": "View",
         "edit": "Edit",
         "duplicate": "Duplicate",
         "restore": "Restore",
@@ -52,6 +64,12 @@
         "delete": "Delete",
         "confirmDeleteMessage": "Are you sure you want to delete this balance entry?",
         "confirmPermanentDeleteMessage": "Are you sure you want to permanently delete this balance entry?"
+      },
+      "viewDialog": {
+        "title": "Whistory Details",
+        "absoluteChanges": "Absolute Changes",
+        "relativeChanges": "Relative Changes",
+        "deletedAt": "Deleted At"
       }
     },
 
@@ -97,18 +115,35 @@
       "moneyAmount": "Money Amount",
       "changes": "Changes",
       "wallets": "Wallets",
-      "date": "Date"
+      "date": "Date",
+      "actions": "Actions",
+      "actionsMenu": {
+        "label": "Actions",
+        "view": "View"
+      },
+      "viewDialog": {
+        "title": "Entry Details"
+      }
     },
 
     "navbar": {
       "history": "History",
-      "expenses": "Expenses"
+      "expenses": "Expenses",
+      "earnings": "Earnings"
     },
 
     "expensesTable": {
       "moneyAmount": "Money Amount",
       "date": "Date",
       "type": "Type",
+      "comment": "Comment",
+      "actions": "Actions"
+    },
+
+    "earningsTable": {
+      "type": "Type",
+      "amount": "Amount",
+      "date": "Date",
       "comment": "Comment",
       "actions": "Actions"
     },
@@ -138,13 +173,77 @@
         "table": {
           "type": "Type",
           "amount": "Amount",
-          "comment": "Comment"
+          "comment": "Comment",
+          "date": "Date"
         },
         "dayDialog": {
           "title": "Expenses for",
           "addNewExpense": "Add New Expense",
           "submit": "Submit"
+        },
+        "emptyState": {
+          "title": "No data",
+          "description": "No expenses found for the following query",
+          "currency": "Currency:",
+          "from": "From:",
+          "to": "To:",
+          "types": "Types:",
+          "comment": "Comment:",
+          "notSet": "Not set"
         }
+      }
+    },
+
+    "earningsContainer": {
+      "createButtonLabel": "Create",
+      "earnings": {
+        "emptyState": {
+          "title": "No data",
+          "description": "No earnings found for the following query",
+          "currency": "Currency:",
+          "from": "From:",
+          "to": "To:",
+          "types": "Types:",
+          "comment": "Comment:",
+          "notSet": "Not set"
+        }
+      },
+      "earningsFilters": {
+        "filtersButton": "Filters",
+        "fromDate": "From Date",
+        "toDate": "To Date",
+        "pickADate": "Pick a date",
+        "types": "Types",
+        "selectTypes": "Select types",
+        "comment": "Comment",
+        "commentPlaceholder": "Search in comments...",
+        "applyFilters": "Apply Filters",
+        "from": "From",
+        "to": "To",
+        "typesLabel": "Types:",
+        "commentLabel": "Comment:"
+      }
+    },
+
+    "historyFilters": {
+      "filtersButton": "Filters",
+      "fromDate": "From Date",
+      "toDate": "To Date",
+      "pickADate": "Pick a date",
+      "applyFilters": "Apply Filters",
+      "from": "From",
+      "to": "To",
+      "dayInterval": "Day Interval",
+      "selectInterval": "Select interval",
+      "days": "{{count}} day",
+      "days_plural": "{{count}} days",
+      "emptyState": {
+        "title": "No data",
+        "description": "No history found for the following query",
+        "currency": "Currency:",
+        "from": "From:",
+        "to": "To:",
+        "notSet": "Not set"
       }
     }
   },
@@ -215,6 +314,23 @@
       "commentLabel": "Comment",
       "cancelLabel": "Cancel",
       "submitLabel": "Submit"
+    },
+
+    "createEarning": {
+      "title": "Create Earning"
+    },
+
+    "editEarning": {
+      "title": "Edit Earning"
+    },
+
+    "earningForm": {
+      "dateLabel": "Date",
+      "amountLabel": "Amount",
+      "typeLabel": "Type",
+      "commentLabel": "Comment",
+      "cancelLabel": "Cancel",
+      "submitLabel": "Create"
     }
   },
 
@@ -222,7 +338,8 @@
     "whistory": {
       "tooltip": {
         "balanceLabel": "Balance"
-      }
+      },
+      "detailizationLabel": "Chart Detalization"
     },
 
     "whistoryChanges": {
@@ -240,5 +357,9 @@
     "exportAll": "Export All",
     "inEnglish": "In English",
     "inBelarusian": "Па Беларуску"
+  },
+
+  "appSidebar": {
+    "appTitle": "Skarb"
   }
 }

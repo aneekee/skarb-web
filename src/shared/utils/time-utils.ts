@@ -1,5 +1,14 @@
 import { Locale } from "@/locale";
 
+export const getLocalISOString = (date: Date) => {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+};
+
 export interface DateDifference {
   years: number;
   months: number;
@@ -176,4 +185,19 @@ export const getMonthStart = (date: Date): Date => {
   const start = new Date(date.getFullYear(), date.getMonth(), 1);
   start.setHours(0, 0, 0, 0);
   return start;
+};
+
+export const getMonthStartTs = (date: Date): number => {
+  const start = getMonthStart(date);
+  return start.getTime();
+};
+
+/**
+ * Formats a date to show only the date part (without time) using locale string format.
+ * @param date - The date to format
+ * @returns The date string without the time component
+ * @example formatDateOnly(new Date()) // "12/30/2025"
+ */
+export const formatDateOnly = (date: Date): string => {
+  return date.toLocaleString().split(",")[0];
 };

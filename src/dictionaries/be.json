@@ -30,6 +30,17 @@
     "title": "Гісторыя {{walletName}}",
 
     "filters": {
+      "filtersButton": "Фільтры",
+      "fromDate": "Дата ад",
+      "toDate": "Дата да",
+      "pickADate": "Абярыце дату",
+      "from": "Ад:",
+      "to": "Да:",
+      "types": "Тыпы",
+      "selectTypes": "Абярыце тыпы",
+      "comment": "Каментар",
+      "commentPlaceholder": "Пошук у каментарах...",
+      "applyFilters": "Прымяніць фільтры",
       "form": {
         "fromLabel": "Ад: ",
         "toLabel": "Да: ",
@@ -45,13 +56,20 @@
       "actions": "Дзеянні",
       "actionsMenu": {
         "label": "Дзеянні",
+        "view": "Прагляд",
         "edit": "Рэдагаваць",
         "duplicate": "Дубляваць",
         "restore": "Аднавіць",
         "deletePermanently": "Выдаліць назаўсёды",
         "delete": "Выдаліць",
-        "confirmDeleteMessage": "Вы ўпэўненыя, што хочаце выдаліць гэты запіс баланса?",
-        "confirmPermanentDeleteMessage": "Вы ўпэўненыя, што хочаце выдаліць гэты запіс баланса назаўсёды?"
+        "confirmDeleteMessage": "Вы ўпэўнены, што хочаце выдаліць гэты запіс аб балансе?",
+        "confirmPermanentDeleteMessage": "Вы ўпэўнены, што хочаце навечна выдаліць гэты запіс аб балансе?"
+      },
+      "viewDialog": {
+        "title": "Дэталі гісторыі",
+        "absoluteChanges": "Абсалютныя змены",
+        "relativeChanges": "Адносныя змены",
+        "deletedAt": "Выдалена"
       }
     },
 
@@ -96,18 +114,35 @@
       "moneyAmount": "Сума грошай",
       "changes": "Змены",
       "wallets": "Кашалькі",
-      "date": "Дата"
+      "date": "Дата",
+      "actions": "Дзеянні",
+      "actionsMenu": {
+        "label": "Дзеянні",
+        "view": "Прагляд"
+      },
+      "viewDialog": {
+        "title": "Дэталі запісу"
+      }
     },
 
     "navbar": {
       "history": "Гісторыя",
-      "expenses": "Выдаткі"
+      "expenses": "Выдаткі",
+      "earnings": "Прыбыткі"
     },
 
     "expensesTable": {
       "moneyAmount": "Сума грошай",
       "date": "Дата",
       "type": "Тып выдатку",
+      "comment": "Каментар",
+      "actions": "Дзеянні"
+    },
+
+    "earningsTable": {
+      "type": "Тып",
+      "amount": "Сума",
+      "date": "Дата",
       "comment": "Каментар",
       "actions": "Дзеянні"
     },
@@ -137,13 +172,77 @@
         "table": {
           "type": "Тып",
           "amount": "Сума",
-          "comment": "Каментар"
+          "comment": "Каментар",
+          "date": "Дата"
         },
         "dayDialog": {
           "title": "Выдаткі за",
           "addNewExpense": "Дадаць Новы Выдатак",
           "submit": "Адправіць"
+        },
+        "emptyState": {
+          "title": "Няма даных",
+          "description": "Выдаткі не знойдзены для наступнага запыту",
+          "currency": "Валюта:",
+          "from": "З:",
+          "to": "Да:",
+          "types": "Тыпы:",
+          "comment": "Каментар:",
+          "notSet": "Не ўстаноўлена"
         }
+      }
+    },
+
+    "earningsContainer": {
+      "createButtonLabel": "Стварыць",
+      "earnings": {
+        "emptyState": {
+          "title": "Няма даных",
+          "description": "Прыбыткі не знойдзены для наступнага запыту",
+          "currency": "Валюта:",
+          "from": "З:",
+          "to": "Да:",
+          "types": "Тыпы:",
+          "comment": "Каментар:",
+          "notSet": "Не ўстаноўлена"
+        }
+      },
+      "earningsFilters": {
+        "filtersButton": "Фільтры",
+        "fromDate": "Ад даты",
+        "toDate": "Да даты",
+        "pickADate": "Абраць дату",
+        "types": "Тыпы",
+        "selectTypes": "Абярыце тыпы",
+        "comment": "Каментар",
+        "commentPlaceholder": "Пошук у каментарах...",
+        "applyFilters": "Прымяніць фільтры",
+        "from": "Ад",
+        "to": "Да",
+        "typesLabel": "Тыпы:",
+        "commentLabel": "Каментар:"
+      }
+    },
+
+    "historyFilters": {
+      "filtersButton": "Фільтры",
+      "fromDate": "Ад даты",
+      "toDate": "Да даты",
+      "pickADate": "Абраць дату",
+      "applyFilters": "Прымяніць фільтры",
+      "from": "Ад",
+      "to": "Да",
+      "dayInterval": "Інтэрвал дзён",
+      "selectInterval": "Абраць інтэрвал",
+      "days": "{{count}} дзень",
+      "days_plural": "{{count}} дзён",
+      "emptyState": {
+        "title": "Няма даных",
+        "description": "Гісторыя не знойдзена для наступнага запыту",
+        "currency": "Валюта:",
+        "from": "Ад:",
+        "to": "Да:",
+        "notSet": "Не пазначана"
       }
     }
   },
@@ -214,6 +313,23 @@
       "commentLabel": "Каментар",
       "cancelLabel": "Скасаваць",
       "submitLabel": "Адправіць"
+    },
+
+    "createEarning": {
+      "title": "Стварыць Прыбытак"
+    },
+
+    "editEarning": {
+      "title": "Рэдагаваць Прыбытак"
+    },
+
+    "earningForm": {
+      "dateLabel": "Дата",
+      "amountLabel": "Сума",
+      "typeLabel": "Тып",
+      "commentLabel": "Каментар",
+      "cancelLabel": "Скасаваць",
+      "submitLabel": "Стварыць"
     }
   },
 
@@ -221,7 +337,8 @@
     "whistory": {
       "tooltip": {
         "balanceLabel": "Баланс"
-      }
+      },
+      "detailizationLabel": "Дэталізацыя графіка"
     },
 
     "whistoryChanges": {
@@ -239,5 +356,9 @@
     "exportAll": "Экспартаваць усё",
     "inEnglish": "In English",
     "inBelarusian": "Па Беларуску"
+  },
+
+  "appSidebar": {
+    "appTitle": "Skarb"
   }
 }

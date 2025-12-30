@@ -2,17 +2,12 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Suspense } from "react";
 
-import DictionaryProvider from "@/shared/components/Dictionary";
-import OverlayProvider from "@/shared/components/overlay/OverlayProvider";
-import Loading from "@/shared/components/sidebar/Loading";
-import Sidebar from "@/shared/components/sidebar/Sidebar";
-
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { getDictionary } from "@/dictionaries";
+import DictionaryProvider from "@/shared/components/Dictionary";
 
-import { Locale } from "@/locale";
-
+import { AppSidebar } from "./components/AppSidebar/AppSidebar";
 import Footer from "./components/Footer";
 
 import "./globals.css";
@@ -24,32 +19,43 @@ export const metadata: Metadata = {
   description: "A simple budget tracking app",
 };
 
-export default async function RootLayout({
-  children,
-  params: { locale },
-}: Readonly<{
-  children: React.ReactNode;
-  params: {
-    locale: Locale;
-  };
-}>) {
+export default async function RootLayout(
+  props: Readonly<{
+    children: React.ReactNode;
+    params: Promise<{
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      locale: any;
+    }>;
+  }>,
+) {
+  const params = await props.params;
+
+  const { locale } = params;
+
+  const { children } = props;
+
   const d = await getDictionary(locale);
 
   return (
     <html lang={locale}>
-      <body
-        className={`${inter.className} grid h-screen w-full grid-cols-[auto,_1fr,_1fr] grid-rows-[1fr,_1fr,_auto] overflow-hidden`}
-      >
+      <body>
         <DictionaryProvider d={d} locale={locale}>
-          <OverlayProvider>
-            <div className="col-span-1 row-span-4">
-              <Suspense fallback={<Loading />}>
-                <Sidebar locale={locale} />
-              </Suspense>
+          <SidebarProvider>
+            <div
+              className={`${inter.className} grid h-screen w-full grid-cols-[auto,_1fr,_1fr] grid-rows-[1fr,_1fr,_auto] overflow-hidden`}
+            >
+              <div className="col-span-1 row-span-4">
+                <AppSidebar locale={locale} />
+              </div>
+              <div className="col-span-2 row-span-2 p-5">
+                <div className="absolute">
+                  <SidebarTrigger />
+                </div>
+                {children}
+              </div>
+              <Footer d={d} />
             </div>
-            <div className="col-span-2 row-span-2 p-5">{children}</div>
-            <Footer d={d} />
-          </OverlayProvider>
+          </SidebarProvider>
         </DictionaryProvider>
         <Analytics />
         <SpeedInsights />
